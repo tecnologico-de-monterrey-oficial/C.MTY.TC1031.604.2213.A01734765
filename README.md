@@ -1,5 +1,5 @@
 # Estructura de Datos y Algoritmos Fundamentales
 ## Grupo 604
 
-# Nombre: David Alonso Cantú Delgado
-## Matrícula: A00189239
+# Nombre: Ernesto Poisot Avila
+## Matrícula: A01734765
