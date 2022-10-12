@@ -100,18 +100,19 @@ int potenciaRecursiva(int x, int y) {
 
 int main() {
 
-int n=10
-int saldo=1000
-t << "fibonacci iterativo: " << fibonacciIterativo(n) << endl;
-t << "fibonacci recursivo: " << fibonacciRecursivo(n) << endl;
-t << "bacterias iterativo: " << bacteriasIterativo(n) << endl;
-t << "bacterias recursivo: " << bacteriasRecursivo(n) << endl;
-t << "interes iterativo: " << interesIterativo(n, saldo) << endl;
-t << "interes recursivo: " << interesRecursivo(n, saldo) << endl;
+int n=10;
+double saldo = 1000;
+
+cout << "fibonacci iterativo: " << fibonacciIterativo(n) << endl;
+cout << "fibonacci recursivo: " << fibonacciRecursivo(n) << endl;
+cout << "bacterias iterativo: " << bacteriaIterativo(n) << endl;
+cout << "bacterias recursivo: " << bacteriasRecursivo(n) << endl;
+cout << "interes iterativo: " << interesIterativo(n) << endl;
+cout << "interes recursivo: " << interesRecursivo(n, saldo) << endl;
 int x = 2;
 int y = 8;
-t << "potencias iterativa: " << potenciaIterativa(x, y) << endl;
-t << "potencias recursiva: " << potenciaRecursiva(x, y) << endl;
+cout << "potencias iterativa: " << potenciaIterativa(x, y) << endl;
+cout << "potencias recursiva: " << potenciaRecursiva(x, y) << endl;
 
 return 0;
 }
