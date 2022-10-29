@@ -62,9 +62,15 @@ cout << "Suma de string: " << sumString(d1,d2,d3) << endl;
 cout << "Suma de T: " << sumAnything(d1,d2,d3) << endl;
  */
 
-List<int> list;
-list.add(5);
-list.add(10);
+
+List< vector<int> > list;
+vector<int> list1 = {1,2,3,4,5};
+vector<int> list2 = {6,7,8,9,10};
+
+list.add(list1);
+list.add(list2);
+list.printVector();
+List<int> list3(list1);
 list.print();
 
 
