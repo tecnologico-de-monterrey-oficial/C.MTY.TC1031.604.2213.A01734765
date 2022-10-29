@@ -53,7 +53,7 @@ void List<T>::print() {
   //   cout << list[i] << endl;
   // }
   for (auto el : list) {
-    cout << el << endl;
+    std::cout << el << endl;
   }
 }
 
