@@ -75,17 +75,25 @@ void swap(vector<T> &list, int a, int b){
 
 //ordenamiento de intercambio
 template <class T>
-void swapSort(vector<T> &list){
+void swapSort(vector<T> &list, int &comparisons, int &swaps){
     for (int step=0 ; step<list.size()-1 ; step++){
         for(int index=step+1 ; index<list.size() ; index++){
+            comparisons++;
             if(list[step] > list[index]){
+                swaps++;
                 swap(list,step,index);
             }
         }
     }
 }
 
-//
+//ordenamiento de burbuja
+template <class T>
+void bubbleSort(vector<T> &list, int &comparisons, int &swaps){
+
+}
+
+//imprimir la lista
 template <class T>
 void printList(vector<T> list){
     for (auto el : list) {
@@ -127,14 +135,18 @@ struct timeval begin, end;
 
 vector<int> list;
 vector<int> listBase;
+int swaps;
+int comparisons;
 
     createListInt(listBase, 100);
     list = listBase;
-
+    swaps=0;
+    comparisons=0;
     printList(list);
     startTime(begin);
-    swapSort(list);
+    swapSort(list, comparisons,swaps);
     getTime(begin, end);
+    cout << "comparaciones; " << comparisons << " intercambios: " << swaps << endl;
     printList(list);
 
     return 0;
