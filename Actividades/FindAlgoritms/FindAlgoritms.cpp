@@ -26,11 +26,6 @@ void getTime(struct timeval begin, struct timeval end)
   printf("Tiempo de ejecución: %.8f seconds.\n", elapsed);
 }
 
-
-
-
-
-
 //busqueda secuencial (O(n))
 template <class T>
 bool sequentialSearch(vector<T>list, T n){
