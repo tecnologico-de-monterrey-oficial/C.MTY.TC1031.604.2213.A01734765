@@ -5,7 +5,8 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "C:/mingw64/include/c++/12.1.0",
-                "C:/mingw64/include/c++/12.1.0/x86_64-w64-mingw32"
+                "C:/mingw64/include/c++/12.1.0/x86_64-w64-mingw32",
+                "${workspaceFolder}/ADTs/01-LinkedList"
             ],
             "defines": [
                 "_DEBUG",
