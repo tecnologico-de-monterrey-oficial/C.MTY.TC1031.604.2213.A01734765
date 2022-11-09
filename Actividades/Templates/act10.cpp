@@ -45,9 +45,9 @@ double b3 = 9.6;
 float c1 = 1.2;
 float c2 = 3.4;
 float c3 = 5.6;
-string d1 = "mitrozon";
-string d2 = "obo";
-string d3 = "elver";
+string d1 = "texto1";
+string d2 = "texto2";
+string d3 = "texto3";
 
 cout << "Suma de int: " << sumInt(a1, a2, a3) << endl;
 cout << "Suma de T: " << sumAnything(a1,a2,a3) << endl;

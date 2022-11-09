@@ -18,3 +18,8 @@ using namespace std;
 //Despliegue la información del buque solicitado en caso de que si exista
 //Utilice un árbol binario de búsqueda para realizar la búsqueda del buque.
 //Realice un menú con las diferentes opciones solicitadas en la actividad
+
+int main(){
+
+    return 0;
+}
