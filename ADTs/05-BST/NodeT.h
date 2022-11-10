@@ -26,7 +26,7 @@ NodeT <T>::NodeT(T data) {
 
 template <class T>
 NodeT <T>::NodeT(T data, NodeT<T>* left, NodeT<T>* right) {
-    this-> data=data;
-    this-> left=left;
-    this-> right=right;
+    this->data = data;
+    this->left = left;
+    this->right = right;
 }
