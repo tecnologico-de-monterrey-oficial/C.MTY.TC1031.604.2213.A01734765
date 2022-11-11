@@ -18,6 +18,7 @@ private:
     void inOrdenConv(NodeT<T>* root);
     void postOrdenConv(NodeT<T>* root);
     void nivelPorNivel();
+    
 
 public:
     BST();
@@ -28,6 +29,8 @@ public:
     bool isEmpty();//checa si esta vacio el arbol
     void orden(int type);//da el orden 
     int whatLevelIAm(T data);//busca en que nivel está un valor
+    int height();
+    void ancestors(T data);
 };
 
 template<class T>
@@ -381,5 +384,14 @@ int BST<T>::whatLevelIAm(T data){
     return nivel;
 }
 
+template<class T>
+int BST<T>::height(){
+    
+}
 
+
+template<class T>
+void BST<T>::ancestors(T data){
+
+}
 #endif
