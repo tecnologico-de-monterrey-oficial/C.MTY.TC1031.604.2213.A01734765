@@ -13,12 +13,11 @@ int main()
     stack.push(5);
     stack.push(6);
 
-    stack.print();
+    cout << stack.getTop() << endl;
 
-    //cout << stack.getTop() << endl;
+    stack.pop();
 
-    //stack.pop();
-
+    cout << stack.getTop() << endl;
     //stack.print();
 
     return 0;

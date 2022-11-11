@@ -21,6 +21,7 @@ public:
     void deleteData(T data); // *Elimina el elemento dado (El primero que encuentre)
     void print();
     bool isEmpty();
+    void update(int index, T data);
 };
 
 template<class T>
@@ -44,6 +45,24 @@ void LinkedList<T>::append(T data) {
     }
     size++;
 }
+
+template<class T>
+void LinkedList<T>::update(int index, T data){
+    if (index >= 0 && index < size) {
+        Node<T>* aux = head;
+        int auxIndex = 0;
+        while (auxIndex < index) {
+            auxIndex++;
+            aux = aux->next;
+        }
+        aux->data=data;
+    } else {
+        throw out_of_range("El índice es inválido");
+    }
+}
+
+
+
 
 // Agrega un elemento al principio de la lista
 template<class T>

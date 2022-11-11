@@ -22,6 +22,11 @@ class DoublyLinkedList {
         void print(); // Imprime la lista de izquierda a derecha
         void printReverse(); // Imprime la lista de derecha a izquierda
         bool isEmpty();
+        void updateData(T data1, T data2);//Actualiza el primer elemento que sea igual al valor recibido como parámetro con el valor del dato nuevo recibido como parámetro.
+        void updateAt(int index, T data);//Actualiza un elemento en una posición recibida como parámetro con el valor de un dato recibido como parámetro.
+        bool operator=(DoublyLinkedList<T> list); // Regresa el valor que se encuentra en el índice dado
+
+
 };
 
 
@@ -31,6 +36,53 @@ DoublyLinkedList<T>::DoublyLinkedList(){
     this->tail = nullptr;
     this->size = 0;
 }
+
+template <class T>
+void DoublyLinkedList<T>::updateAt(int index, T data){
+    if (index >= 0 && index < size) {
+        
+        
+        NodeD<T>* aux;
+        if (index < size/2) {
+            aux = head;
+            int auxIndex = 0; 
+            while (auxIndex < index) {
+                aux = aux->next;
+                auxIndex++;
+            }   
+        } else {
+            aux = tail->prev;
+            int auxIndex = size - 2; 
+            while (auxIndex > index) {
+                aux = aux->prev;
+                auxIndex--;
+            }   
+        }
+        aux->data=data;
+
+
+
+
+    } else {
+        throw out_of_range("El índice es inválido");
+    }
+}
+
+template <class T>
+void DoublyLinkedList<T>::updateData(T data1, T data2){
+    NodeD<T>* aux = head;
+    int auxIndex = 0;
+    while (aux != nullptr) {
+        if (aux->data == data1) {
+            aux->data=data2;
+        } else {
+            aux = aux-> next;
+            auxIndex++;
+        }
+    }
+    throw out_of_range("El dato no se encuentra");
+}
+
 
 // Agrega un elemento al final de la lista
 template<class T>

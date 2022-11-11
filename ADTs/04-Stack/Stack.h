@@ -14,7 +14,6 @@ class Stack{
         T pop(); //elimina el valor de arriba de stack y dice cual se borró
         void push(T data);//agrega elemento a la fila
         void print(); //imprimir fila
-        void reversePrint();//imprimir al reves
         bool isEmpty();
 };
 
@@ -33,8 +32,12 @@ T Stack<T>::getTop(){
 template<class T>
 T Stack<T>::pop(){
     if (!isEmpty()) {
-        delete top;
+        Node<T>* aux = top;
+        T auxData = aux->data;
+        top = top->next;
+        delete aux;
         size--;
+        return auxData;
     } else {
         throw out_of_range("La fila esta vacía");
     }
@@ -47,20 +50,15 @@ void Stack<T>::push(T data){
 };
 
 template<class T>
-void Stack<T>::print(){
-    
-    while(top != nullptr){
+void Stack<T>::print() {
     Node<T>* aux = top;
-    cout << aux->data << " ";    
-    pop();
+    while (aux != nullptr) {
+        cout << aux->data << " ";
+        aux = aux->next;
     }
+    cout << endl;
+}
 
-};
-
-template<class T>
-void Stack<T>::reversePrint(){
-    
-};
 
 template<class T>
 bool Stack<T>::isEmpty(){
