@@ -15,11 +15,11 @@ int main()
 
     stack.print();
 
-    cout << stack.getTop() << endl;
+    //cout << stack.getTop() << endl;
 
-    stack.pop();
+    //stack.pop();
 
-    stack.print();
+    //stack.print();
 
     return 0;
 }

@@ -38,35 +38,39 @@ void quickSort(vector<T> &list, int start, int end) {
     }
 }
 
-template <class T>
-bool binarySearch(vector<T> list, T value) {
+int binarySearch(vector<Log> list, string serie){
     int left = 0;
     int right = list.size() - 1;
-    while (left <= right) {
+    while (left <= right){
         int mid = (left + right) / 2;
-        if (list[mid] == value) {
-            return true;
-        } else {
-            if (value < list[mid]) {
-                right = mid -1;
+        if (list[mid].serie == serie) {
+            if (mid == 0) {
+                return mid;
             } else {
+                if (list[mid-1].serie == serie) {
+                    right = mid - 1;
+                } else {
+                    return mid;
+                }
+            }
+        }else{
+            if (serie < list[mid].serie) {
+                right = mid - 1;
+            }
+            else{
                 left = mid + 1;
             }
         }
     }
-    return false;
+    return -1;
 }
 
 void printLogs(vector<Log> logs){
     for (auto log: logs){
         cout << log << endl;
-        cout << "UBI: " << log.ubi << "datetime" << log.date << " " << log.time << endl;
+        //cout << "UBI: " << log.ubi << " " << "datetime" << " " << log.date << " " << log.time << endl;
     }
 }
-
-
-
-
 
 
 
@@ -74,43 +78,52 @@ void printLogs(vector<Log> logs){
 int main(){
 string ansFileName;
 string ansSerie;
+
 string date;
 string time;
 string entry;
 string ubi;
 vector<Log> logs;
 
-
+//Solicite el nombre del archivo de entrada (Ej. canal.txt) y lo abra, almacenando los datos en un vector.
     cout << "inserte el nombre del archivo que se leerá" << endl;
     cin >> ansFileName;
-
-    cout << "inserte la serie a buscar (los primeros tres caracteres de el UBI)" << endl;
-    cin >> ansSerie;
-
-
-
 
     ifstream file;
     file.open(ansFileName);
 
+    while (file >> date >> time >> entry >> ubi){
+        Log log(date, time, entry, ubi);
+        logs.push_back(log);
+    }
 
 
-//recorremos todo el archivo para crear agregar los renglones del vector
-while (file >> date >> time >> entry >> ubi){
-    Log log(date, time, entry, ubi);
-    logs.push_back(log);
-}
+//Ordene la información por UBI + Fecha (primero por UBI, al haber empate ordenar por fecha).
+//Utiliza Merge Sort o Quick Sort para ordenar los datos.
+    quickSort(logs, 0, logs.size()-1);
 
-quickSort(logs, 0, logs.size()-1);
+//Solicite al usuario la serie a buscar (los primeros tres caracteres de el UBI).
+    cout << "inserte la serie a buscar (los primeros tres caracteres de el UBI)" << endl;
+    cin >> ansSerie;
 
-ubi = "1TL";
-int index = binarySearch(logs,ubi);
-cout << "Posición del primer elemento con ese  UBI: " << index << endl; 
+//Despliegue todas las entradas al canal de los buques de esas series en forma ordenada UBI+Fecha.
+//Utiliza Merge Sort o Quick Sort para ordenar los datos.
+    ubi = ansSerie;
+    int index = binarySearch(logs,ubi);
+    cout << "Posición del primer elemento con ese UBI: " << index << endl;
 
-printLogs(logs);
-
-
-
+    if (index >= 0) {
+        while (logs[index].serie == ubi) {
+            cout << logs[index] << endl;
+            if (index == logs.size()-1) {
+                ubi = "";
+            } else {
+                index++;
+            }
+        }
+    } else {
+        cout << "No hay elementos con ese UBI" << endl;
+    }
 
 return 0;
 }
