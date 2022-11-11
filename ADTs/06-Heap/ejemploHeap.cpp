@@ -27,8 +27,8 @@ void HeapSortA(vector<T>& list) {
 int main()
 {
     
-    //vector<int> list = {8,5,17,19,21,28};
-    Heap<int> heap(8,5,17,19,21,28);
+    vector<int> list = {8,5,17,19,21,28};
+    Heap<int> heap(list);
 
     heap.print();
 

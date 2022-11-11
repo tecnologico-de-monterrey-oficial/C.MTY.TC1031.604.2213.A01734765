@@ -1,6 +1,8 @@
 #ifndef Stack_h
 #define Stack_h
 
+#include "Node.h"
+
 template <class T>
 class Stack{
     private:
@@ -9,7 +11,7 @@ class Stack{
     public:
         Stack();
         T getTop();//valor de arriba de stack
-        T pop(); //elimina el valor de arriba de stack
+        T pop(); //elimina el valor de arriba de stack y dice cual se borró
         void push(T data);//agrega elemento a la fila
         void print(); //imprimir fila
         void reversePrint();//imprimir al reves
@@ -25,17 +27,35 @@ Stack<T>::Stack(){
 
 template<class T>
 T Stack<T>::getTop(){
-
+    return top->data;
 };
 
 template<class T>
 T Stack<T>::pop(){
-    
+    if (!isEmpty()) {
+        Node<T>* aux = top;
+        T auxData = aux->data;
+        top = top->next;
+        delete aux;
+        size--;
+        return auxData;
+    } else {
+        throw out_of_range("La fila esta vacía");
+    }
 };
 
 template<class T>
 void Stack<T>::push(T data){
-    
+        if (isEmpty()) {
+        top = new Node<T>(data);
+    } else {
+        Node<T>* aux = top;
+        while (aux->next != nullptr) {
+            aux = aux->next;
+        }
+        aux->next = new Node<T>(data);
+    }
+    size++;
 };
 
 template<class T>
