@@ -2,13 +2,23 @@
 #define BST_h
 
 #include "NodeT.h"
+#include "Queue.h"
+
 
 template<class T>
 class BST{
 private:
     NodeT<T>* root;
-    void printTree(NodeT<T>* aux, int level);//hace que la impresión sea en arbol
+    void printTree(NodeT<T>* aux, int level);
     int howManyChildren(NodeT<T>* aux);
+    void preOrden(NodeT<T>* root);
+    void inOrden(NodeT<T>* root);
+    void postOrden(NodeT<T>* root);
+    void preOrdenConv(NodeT<T>* root);
+    void inOrdenConv(NodeT<T>* root);
+    void postOrdenConv(NodeT<T>* root);
+    void nivelPorNivel();
+
 public:
     BST();
     void insert(T data);//inserta un nodo nuevo
@@ -16,13 +26,25 @@ public:
     void remove(T data);//remueve el primer nodo que encuentre con el valor que escribas
     void print();//imprime
     bool isEmpty();//checa si esta vacio el arbol
-    void order(int type);//da el orden 
+    void orden(int type);//da el orden 
     int whatLevelIAm(T data);//busca en que nivel está un valor
 };
 
 template<class T>
 BST<T>::BST() {
     root = nullptr;
+}
+
+template<class T>
+void BST<T>::printTree(NodeT<T>*aux, int level){
+    if(aux != NULL){
+        printTree(aux->right, level+1);
+        for (int i=0 ; i<level ; i++){
+            cout << " ";
+        }
+        cout << aux->data << endl;
+        printTree(aux->left, level+1);
+    }
 }
 
 template<class T>
@@ -36,6 +58,90 @@ int BST<T>::howManyChildren(NodeT<T>* aux){
             return 1;
         }
     }
+}
+
+template<class T>
+void BST<T>::preOrden(NodeT<T>* aux){
+    //condicion central para salir recursividad
+    if(aux != nullptr){
+      //visita el nodo raiz del arbol
+        cout << aux->data << " " ;
+      //recorre preordel arbol izquierdo
+        preOrden(aux->left);            
+      // preorder arbol derecho  
+        preOrden(aux->right);       
+
+    }
+}
+
+template<class T>
+void BST<T>::inOrden(NodeT<T>* aux){
+    if(aux != nullptr){
+        inOrden(aux->left);
+        cout << aux->data << " " ;
+        inOrden(aux->right);  
+    }
+}
+
+template<class T>
+void BST<T>::postOrden(NodeT<T>* aux){
+    if(aux != nullptr){
+        postOrden(aux->left);
+        postOrden(aux->right); 
+        cout << aux->data << " " ;
+
+                
+    }
+}
+
+template<class T>
+void BST<T>::preOrdenConv(NodeT<T>* aux){
+    if(aux != nullptr){
+        cout << aux->data << " " ;
+        preOrden(aux->right);            
+        preOrden(aux->left);       
+
+    }
+}
+
+template<class T>
+void BST<T>::inOrdenConv(NodeT<T>* aux){
+    if(aux != nullptr){
+        inOrden(aux->right);
+        cout << aux->data << " " ;
+        inOrden(aux->left);  
+    }
+}
+
+template<class T>
+void BST<T>::postOrdenConv(NodeT<T>* aux){
+    if(aux != nullptr){
+        postOrden(aux->right);
+        postOrden(aux->left); 
+        cout << aux->data << " " ;
+
+                
+    }
+}
+
+template<class T>
+void BST<T>::nivelPorNivel(){
+    Queue<NodeT<T>*> queue;
+    //meter nodo raiz a una fila
+    queue.push(root);    
+    //mientras la fila no se vacie
+    while(!queue.isEmpty()){
+        NodeT<T>*aux = queue.pop();
+        //sacar un nodo de la fila y procesarlo
+        cout << aux->data << " ";
+        //meter a la fila a los hijos del nodo procesado (si estos existen)
+        if(aux->left != nullptr){
+            queue.push(aux->left);
+        }
+        if(aux->right != nullptr){
+            queue.push(aux->right);
+        }
+    }  
 }
 
 template<class T>
@@ -94,9 +200,6 @@ void BST<T>::insert(T data) {
     }*/
 }
 
-
-
-
 template<class T>
 bool BST<T>::find(T data) {
     NodeT<T>* aux = root;
@@ -113,7 +216,6 @@ bool BST<T>::find(T data) {
     }
     return false;
 }
-
 
 template<class T>
 void BST<T>::remove(T data) {
@@ -203,18 +305,6 @@ void BST<T>::remove(T data) {
 }
 
 template<class T>
-void BST<T>::printTree(NodeT<T>*aux, int level){
-    if(aux != NULL){
-        printTree(aux->right, level+1);
-        for (int i=0 ; i<level ; i++){
-            cout << " ";
-        }
-        cout << aux->data << endl;
-        printTree(aux->left, level+1);
-    }
-}
-
-template<class T>
 void BST<T>::print() {
     if(!isEmpty()){
         int level = 0;
@@ -230,5 +320,66 @@ template<class T>
 bool BST<T>::isEmpty(){
     return root == nullptr;
 }
+
+template<class T>
+void BST<T>::orden(int type){
+    switch (type)
+    {
+    case 1: //1=pre orden
+        preOrden(root);
+        
+        break;
+
+    case 2: //2=in orden
+        inOrden(root);
+        break;
+    
+    case 3: //3=post order
+        postOrden(root);
+        break;
+
+    case 4: //4=pre orden converso
+        preOrdenConv(root);
+        break;
+
+    case 5: //5=in orden converso
+        inOrdenConv(root);
+        break;
+    
+    case 6: //6=post order converso
+        postOrdenConv(root);
+        break;
+
+    case 7: //7= nivel por nivel
+        nivelPorNivel();
+        break;
+
+
+
+    default:
+        break;
+    }
+}
+
+template<class T>
+int BST<T>::whatLevelIAm(T data){
+        NodeT<T>* aux = root;
+        int nivel = 1;
+    while (aux != nullptr) {
+        if (aux->data == data) {
+            return nivel;
+        } else {
+            if (data < aux->data) {
+                nivel++;
+                aux = aux->left;
+            } else {
+                nivel++;
+                aux = aux->right;
+            }   
+        }
+    }
+    return nivel;
+}
+
 
 #endif
