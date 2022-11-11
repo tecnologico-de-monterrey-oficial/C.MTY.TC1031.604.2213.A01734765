@@ -30,7 +30,7 @@ public:
     void orden(int type);//da el orden 
     int whatLevelIAm(T data);//busca en que nivel está un valor
     int height();
-    void ancestors(T data);
+    bool ancestors(T data);
 };
 
 template<class T>
@@ -389,9 +389,22 @@ int BST<T>::height(){
     
 }
 
-
 template<class T>
-void BST<T>::ancestors(T data){
-
+bool BST<T>::ancestors(T data){
+    Node<T>*aux = root
+{
+  if (root == nullptr)
+     return false;
+  if (root->data == data)
+     return true;
+  if ( ancestors(root->left, data) || ancestors(root->right, data) )
+  {
+    cout << root->data << " ";
+    return true;
+  }
+ 
+  /* Else return false */
+  return false;
+    }
 }
 #endif
