@@ -3,6 +3,7 @@
 #include <vector>
 using namespace std;
 
+
 #include "Log.h"
 
 template <class T>

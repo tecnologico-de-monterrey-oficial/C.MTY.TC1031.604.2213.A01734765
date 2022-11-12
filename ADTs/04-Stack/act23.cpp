@@ -6,7 +6,8 @@ using namespace std;
 int main()
 {
 int ans;
-    Stack<int> stack;
+Stack<int> stack;
+
     stack.push(1);
     stack.push(2);
     stack.push(3);
@@ -18,8 +19,11 @@ int ans;
 
 cout<< "¿Que metodo quieres usar? (1=pop,2=push,3=top)" << endl;
 cin >> ans;
+
     if(ans==1){
         stack.pop();
+        cout << stack.getTop() << endl;
+        //stack.print();
 
     } else if(ans==2){
         int n;
@@ -30,6 +34,8 @@ cin >> ans;
     } else if(ans==3){
         cout << stack.getTop() << endl;
     }
+
+
 
     return 0;
 }

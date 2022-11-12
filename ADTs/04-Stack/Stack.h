@@ -31,16 +31,7 @@ T Stack<T>::getTop(){
 
 template<class T>
 T Stack<T>::pop(){
-    if (!isEmpty()) {
-        Node<T>* aux = top;
-        T auxData = aux->data;
-        top = top->next;
-        delete aux;
-        size--;
-        return auxData;
-    } else {
-        throw out_of_range("La fila esta vacía");
-    }
+    delete top;
 };
 
 template<class T>
@@ -51,12 +42,14 @@ void Stack<T>::push(T data){
 
 template<class T>
 void Stack<T>::print() {
-    Node<T>* aux = top;
-    while (aux != nullptr) {
-        cout << aux->data << " ";
-        aux = aux->next;
-    }
-    cout << endl;
+
+
+for (std::stack<int> dump = stack; !dump.empty(); dump.pop())
+        std::cout << dump.top() << '\n';
+
+    std::cout << "(" << stack.size() << " elements)\n";
+
+
 }
 
 
