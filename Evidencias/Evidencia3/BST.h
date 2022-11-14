@@ -3,6 +3,7 @@
 
 #include "NodeT.h"
 #include "Queue.h"
+#include "Log.h"
 
 
 template<class T>
@@ -10,6 +11,7 @@ class BST{
 private:
     NodeT<T>* root;
     void printTree(NodeT<T>* aux, int level);
+    void findLog(NodeT<T>* aux, string ansSerie);
     int howManyChildren(NodeT<T>* aux);
     void preOrden(NodeT<T>* root);
     void inOrden(NodeT<T>* root);
@@ -21,6 +23,7 @@ private:
     
 
 public:
+    
     BST();
     void insert(T data);//inserta un nodo nuevo
     bool find(T data);//encuentra el valor de un nodo
@@ -31,7 +34,29 @@ public:
     int whatLevelIAm(T data);//busca en que nivel está un valor
     int height();
     bool ancestors(T data);
+    void printLog(string ansSerie); 
+
 };
+
+
+
+template<class T>
+bool BST<T>::find(T data) {
+    NodeT<T>* aux = root;
+    while (aux != nullptr) {
+        if (aux->data == data) {
+            return true;
+        } else {
+            if (data < aux->data) {
+                aux = aux->left;
+            } else {
+                aux = aux->right;
+            }   
+        }
+    }
+    return false;
+}
+
 
 template<class T>
 BST<T>::BST() {
@@ -203,22 +228,7 @@ void BST<T>::insert(T data) {
     }*/
 }
 
-template<class T>
-bool BST<T>::find(T data) {
-    NodeT<T>* aux = root;
-    while (aux != nullptr) {
-        if (aux->data == data) {
-            return true;
-        } else {
-            if (data < aux->data) {
-                aux = aux->left;
-            } else {
-                aux = aux->right;
-            }   
-        }
-    }
-    return false;
-}
+
 
 template<class T>
 void BST<T>::remove(T data) {
@@ -384,7 +394,7 @@ int BST<T>::whatLevelIAm(T data){
     return nivel;
 }
 
-template<class T>
+/*template<class T>
 int BST<T>::height(){
     
 }
@@ -403,8 +413,14 @@ bool BST<T>::ancestors(T data){
     return true;
   }
  
-  /* Else return false */
+   Else return false 
   return false;
     }
-}
+}*/
+
+
+
+
+
+
 #endif

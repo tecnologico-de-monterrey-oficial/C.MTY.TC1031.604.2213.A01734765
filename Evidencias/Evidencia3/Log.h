@@ -26,6 +26,7 @@ Log::Log(string date, string time, string entry, string ubi) {
     this->ubi = ubi;
     this->serie = ubi.substr(0,3);
     this->key = ubi + "-" + date.substr(6,2) + "/" + date.substr(3,2) + "/" + date.substr(0,2) + "-" + time;
+    //this->key = ubi + "/" + date + "/" + "/" + entry + "/" + time;
 }
 
 bool Log::operator<(Log log) {

@@ -31,9 +31,10 @@ int main()
 
     //bst.orden(1);
 
-    cout << bst.whatLevelIAm(25) << endl;
+    //cout << bst.whatLevelIAm(25) << endl;
 
-
+    cout << "---------------------" << endl;
+    cout << bst.find(60) << endl;
     
     return 0;
 }

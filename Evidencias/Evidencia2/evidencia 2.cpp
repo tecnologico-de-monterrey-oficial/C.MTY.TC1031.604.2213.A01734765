@@ -37,7 +37,7 @@ void swap(DoublyLinkedList<T> &list, int a, int b){
     list[b]=aux;
 }
 template <class T>
-void mergeSort(vector<T> &list, int inf, int sup) {
+void mergeSort(DoublyLinkedList<T> &list, int inf, int sup) {
 
     if (inf < sup) {
         int mid = (inf + sup) / 2;
@@ -47,7 +47,7 @@ void mergeSort(vector<T> &list, int inf, int sup) {
     }
 }
 template<class T>
-void merge(vector<T> &list, int inf, int mid, int sup) {
+void merge(DoublyLinkedList<T> &list, int inf, int mid, int sup) {
     vector<T> left;
     for (int i=inf; i<=mid; i++) {
         left.push_back(list[i]);
@@ -82,7 +82,13 @@ void merge(vector<T> &list, int inf, int mid, int sup) {
         idxRight++;
     }
 }
-
+template<class T>
+void printLogs(DoublyLinkedList<T> logs) {
+    NodeD<T>*aux = 
+    while (aux->next != nullptr) {
+        cout << log << endl;
+    }
+}
 
 
 int main(){
@@ -106,28 +112,19 @@ DoublyLinkedList<Log> logsR;
 
 //almacenando los datos en dos listas doblemente encadenadas (Doubly Linked List), una para los que entran por 
 //el Mar Mediterráneo y otra para los buques que entran por el mar Rojo.
-
-  while (file >> date >> time >> entry >> ubi){
-    Log log(date, time, entry, ubi);
-    if(log.entry=="M"){
-      logsM.append(log);
-    } else if(log.entry=="R"){
-      logsR.append(log);
+    while (file >> date >> time >> entry >> ubi){
+        Log log(date, time, entry, ubi);
+        if(entry=="M"){
+            logsM.append(log);
+        } else {
+        if(entry=="R")    
+            logsM.append(log);
+        }
     }
-  }
 
-//logsM.print();
-//logsR.print();
-
-//Ordene ambas listas encadenadas por UBI + Fecha + Hora (primero por UBI, al haber empate ordenar por fecha y 
-//si persiste el empate por hora). Use los algoritmos Quick Sort o Merge Sort
-  //quickSort(logsM, 0, );
-  //quickSort(logsR, 0, );
+printLogs(logsM);
+printLogs(logsR);
 
 
-
-
-
-
-return 0;
+    return 0;
 }

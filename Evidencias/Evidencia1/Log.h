@@ -1,4 +1,6 @@
 #pragma once
+using namespace std;
+
 
 struct Log {
     string date;
@@ -53,6 +55,6 @@ bool Log::operator!=(Log log) {
 }
 
 ostream& operator<<(ostream& os, Log log) {
-    os << "UBI: " << log.ubi << " key: " << log.key;
+    os << log.ubi << " key: " << log.key;
     return os;
 }
