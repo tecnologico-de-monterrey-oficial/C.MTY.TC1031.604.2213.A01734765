@@ -23,7 +23,7 @@ void puerto(Graph<string> rutaPuerto){
     rutaPuerto.Dijkstra(org,sal);
 
     while(true){
-        cout << endl << endl << "Quiere comprobar otro puerto? (1 - si, 2 - no)" << endl;
+        cout << endl << endl << "Quiere intentar otra combinacion? (si = 1, No = 2)" << endl;
         cin >> sino;
         if(sino == 1){
             puerto(rutaPuerto);
@@ -33,7 +33,7 @@ void puerto(Graph<string> rutaPuerto){
             return;
         }
         else{
-            cout << "Valor invalido" << endl;
+            cout << "Valor no es valido" << endl;
         }
     }
 }
